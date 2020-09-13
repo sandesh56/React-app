@@ -1,12 +1,7 @@
 .App {
-   margin:auto;
-
+	margin: auto;
 }
 .card-body {
-    background: blue;
-    color: white;
-}
-.Menu{
-
-    zoom:70%;
+	background: blue;
+	color: white;
 }
