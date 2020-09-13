@@ -6,7 +6,7 @@ import { Card, CardImg, CardTitle, CardText, CardBody } from "reactstrap";
 
 const renderdish = (dish) => {
   return (
-    <div className="col-12 col-md-5 mt-2">
+    <div className="col-12 col-md-5 mt-4">
       <Card>
         <CardImg width="100%" object src={dish.image} alt={dish.name} />
         <CardBody className='card-body'>
@@ -21,7 +21,7 @@ const renderdish = (dish) => {
 const rendercomment = (dish) => {
 
   return (
-    <div className="col-sm-12 col-md-5 mt-2">
+    <div className="col-sm-12 col-md-5 mt-4">
       <Card>
         <h5>Comments</h5>
         {dish.comments.map((comment) => {

@@ -3,6 +3,7 @@ import '../App.css';
 import { Card, CardImg, CardTitle, CardBody } from "reactstrap";
 
 
+
 function RenderDishdetail({ dish, onClick }) {
   return (
     <Card onClick={() => onClick(dish.id)}>
@@ -27,7 +28,7 @@ const Menu = (props) => {
 
   return (
     <div className="container">
-      <div className="row">{menu}</div>
+      <div className="row row-content">{menu}</div>
     </div>
   );
 }
