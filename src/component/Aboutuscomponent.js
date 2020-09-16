@@ -13,7 +13,7 @@ function Renderleader({ leader }) {
                     <Media heading>
                         {leader.name}
                     </Media>
-                    <strong>{leader.designation}</strong> <br />
+                    {leader.designation ? <strong>{leader.designation}</strong> : null} <br />
                     <br />{leader.description}
 
                 </Media>
