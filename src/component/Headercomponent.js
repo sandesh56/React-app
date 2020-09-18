@@ -10,7 +10,7 @@ export class Headercomponent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isNavopen: false,
+            isNavopen: false,  //Purpose of setting boolean state is just to confirm change state without getting data.
             ismodalopen: false
         };
         this.toggleNav = this.toggleNav.bind(this);
