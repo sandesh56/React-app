@@ -5,7 +5,6 @@ import {
     Form, FormGroup, Input, Label
 } from 'reactstrap';
 import { NavLink } from "react-router-dom";
-
 export class Headercomponent extends Component {
     constructor(props) {
         super(props);

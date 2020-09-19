@@ -77,7 +77,7 @@ class Contact extends Component {
                                             required, maxLength: maxLength(15), minLength: minLength(3)
                                         }}
                                     />
-                                    <Errors className="bg-danger"
+                                    <Errors className="text-danger"
                                         model=".firstname"
                                         show="touched"
                                         messages={{
