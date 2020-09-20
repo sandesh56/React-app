@@ -8,16 +8,18 @@ const minLength = (len) => (val) => val && (val.length >= len);
 
 
 export class CommentForm extends Component {
+    constructor(props) {
+        super(props);
+    }
 
     handelchange(values) {
-        console.log("current state is :" + JSON.stringify(values));
-        alert("current state is :" + JSON.stringify(values));
+        this.props.addComment(this.props.dishId, values.ratings, values.author, values.comment);
     }
 
     render() {
         return (
             <div className="container">
-                <LocalForm onSubmit={(values) => this.handlechange(values)}>
+                <LocalForm onSubmit={(values) => this.handelchange(values)}>
                     <Row className="form-group">
                         <Label htmlFor="ratings">First Name</Label>
 
@@ -32,8 +34,8 @@ export class CommentForm extends Component {
                     </Row>
 
                     <Row className="form-group">
-                        <Label htmlFor="yourname">Your Name</Label>
-                        <Control.text model=".yourname" id="yourname" name="yourname"
+                        <Label htmlFor="author">Your Name</Label>
+                        <Control.text model=".author" id="author" name="author"
                             className="form-control"
                             validators={{
                                 required, minLength: minLength(3), maxLength: maxLength(15)
@@ -41,7 +43,7 @@ export class CommentForm extends Component {
                         />
                         <Errors
                             className="text-danger"
-                            model=".yourname"
+                            model=".author"
                             show="touched"
                             messages={{
                                 required: 'Required',
