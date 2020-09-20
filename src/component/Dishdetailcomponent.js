@@ -15,6 +15,7 @@ import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import CommentForm from "./CommentForm";
 import { Loading } from "./Loading";
+import { baseUrl } from '../shared/baseUrl';
 
 class Dishdetail extends Component {
   constructor(props) {
@@ -26,13 +27,8 @@ class Dishdetail extends Component {
 
     //(**** optional****) for checking emty props
     this.dish = props.dishes;
-    if (this.dish === null || this.dish === undefined) {
-      return <div></div>;
-    }
     this.comments = props.comments;
-    if (this.comments === null || this.comments === undefined) {
-      return <div></div>;
-    }
+
   }
 
   //this is for toggeling a model
@@ -45,7 +41,7 @@ class Dishdetail extends Component {
     return (
       <div className="col-12 col-md-5 mt-4 mb-5">
         <Card>
-          <CardImg width="10px" object src={dish.image} alt={dish.name} />
+          <CardImg width="10px" object src={baseUrl + dish.image} alt={dish.name} />
           <CardBody className="card-body">
             <CardTitle>{dish.name}</CardTitle>
             <CardText>{dish.description}</CardText>
@@ -56,41 +52,42 @@ class Dishdetail extends Component {
   };
   //for rendering a comment
   rendercomment = (comments) => {
-    return (
-      <div className="col-sm-12 col-md-5 mt-4">
-        <div>
-          <h5> Comments</h5>
-          <div className="mb-4">
-            {comments.map((comment) => {
-              return (
-                <div key={comment.id} className="m-2">
-                  <p>
-                    {comment.id} <br />
-                    {comment.comment}
-                    <br />
-                    {`-- ${comment.author} ,
-                        ${new Intl.DateTimeFormat("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "2-digit",
-                    }).format(new Date(Date.parse(comment.date)))}`}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
+    if (comments !== null)
+      return (
+        <div className="col-sm-12 col-md-5 mt-4">
           <div>
-            <Button
-              type="submit"
-              value="submit"
-              className="fa fa-pencil lg"
-              onClick={this.toggleModel}>
-              Submit comment
+            <h5> Comments</h5>
+            <div className="mb-4">
+              {comments.map((comment) => {
+                return (
+                  <div key={comment.id} className="m-2">
+                    <p>
+                      {comment.id} <br />
+                      {comment.comment}
+                      <br />
+                      {`-- ${comment.author} ,
+                        ${new Intl.DateTimeFormat("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "2-digit",
+                      }).format(new Date(Date.parse(comment.date)))}`}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+            <div>
+              <Button
+                type="submit"
+                value="submit"
+                className="fa fa-pencil lg"
+                onClick={this.toggleModel}>
+                Submit comment
 						</Button>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
   };
 
   // rendering all the views from here
@@ -109,7 +106,7 @@ class Dishdetail extends Component {
           <div className="row">{this.props.errmess}</div>
         </div>
       );
-    } else {
+    } else
       return (
         <div className="container">
           <div className="row">
@@ -144,7 +141,7 @@ class Dishdetail extends Component {
           </div>
         </div>
       );
-    }
+
   }
 }
 
