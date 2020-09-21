@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import CommentForm from "./CommentForm";
 import { Loading } from "./Loading";
 import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 class Dishdetail extends Component {
   constructor(props) {
@@ -40,14 +41,20 @@ class Dishdetail extends Component {
   renderdish = (dish) => {
     return (
       <div className="col-12 col-md-5 mt-4 mb-5">
-        <Card>
-          <CardImg width="10px" object src={baseUrl + dish.image} alt={dish.name} />
-          <CardBody className="card-body">
-            <CardTitle>{dish.name}</CardTitle>
-            <CardText>{dish.description}</CardText>
-          </CardBody>
-        </Card>
+        <FadeTransform in
+          transformProps={{
+            exitTransform: 'scale(0.5) transformY(-50%)'
+          }}>
+          <Card>
+            <CardImg width="10px" object src={baseUrl + dish.image} alt={dish.name} />
+            <CardBody className="card-body">
+              <CardTitle>{dish.name}</CardTitle>
+              <CardText>{dish.description}</CardText>
+            </CardBody>
+          </Card>
+        </FadeTransform>
       </div>
+
     );
   };
   //for rendering a comment
@@ -55,38 +62,35 @@ class Dishdetail extends Component {
     if (comments !== null)
       return (
         <div className="col-sm-12 col-md-5 mt-4">
-          <div>
-            <h5> Comments</h5>
-            <div className="mb-4">
+          <h5> Comments</h5>
+          <Stagger in>
+            <ul className="list-unstyled">
               {comments.map((comment) => {
                 return (
-                  <div key={comment.id} className="m-2">
-                    <p>
-                      {comment.id} <br />
-                      {comment.comment}
-                      <br />
-                      {`-- ${comment.author} ,
+                  <Fade in>
+                    <li key={comment.id} className="m-2">
+                      <p> {comment.comment}</p>
+                      <p>{`-- ${comment.author} ,
                         ${new Intl.DateTimeFormat("en-US", {
                         year: "numeric",
                         month: "short",
                         day: "2-digit",
                       }).format(new Date(Date.parse(comment.date)))}`}
-                    </p>
-                  </div>
+                      </p>
+                    </li>
+                  </Fade>
                 );
               })}
-            </div>
-            <div>
-              <Button
-                type="submit"
-                value="submit"
-                className="fa fa-pencil lg"
-                onClick={this.toggleModel}>
-                Submit comment
+            </ul>
+          </Stagger>
+          <Button
+            type="submit"
+            value="submit"
+            className="fa fa-pencil lg"
+            onClick={this.toggleModel}>
+            Submit comment
 						</Button>
-            </div>
-          </div>
-        </div>
+        </div >
       );
   };
 
