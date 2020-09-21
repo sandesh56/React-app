@@ -13,7 +13,7 @@ export class CommentForm extends Component {
     }
 
     handelchange(values) {
-        this.props.addComment(this.props.dishId, values.ratings, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.ratings, values.author, values.comment);
     }
 
     render() {

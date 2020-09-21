@@ -134,7 +134,7 @@ class Dishdetail extends Component {
               <ModalBody>
                 <CommentForm
                   dishId={this.dish.id}
-                  addComment={this.props.addComment}
+                  postComment={this.props.postComment}
                 />
               </ModalBody>
             </Modal>
