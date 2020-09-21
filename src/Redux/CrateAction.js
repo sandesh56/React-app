@@ -21,8 +21,23 @@ export const fetchDishes = () => (dispatch) => {
 
     return (
         fetch(baseUrl + 'dishes')
+            .then(res => {
+                if (res.ok) {
+                    return res;
+                } else {
+                    var error = new Error("Error" + res.status + " :" + res.statusText);
+                    error.res = res;
+                    throw error;
+                }
+            }, error => {
+                var errmess = new Error(error.message);
+                throw errmess;
+
+            })
             .then(res => res.json())
             .then(dishes => dispatch(addDishes(dishes)))
+            .catch(error => dispatch(dishesFailed(error.message))) //BAKI XAA SAME TALAKO
+
     );
 
 }
